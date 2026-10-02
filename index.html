@@ -3,9 +3,74 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Browser Tool</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px;
+      margin: 8px 4px;
+      font-size: 16px;
+    }
+
+    #timer {
+      font-size: 30px;
+      text-align: center;
+      margin: 15px;
+    }
+  </style>
 </head>
+
 <body>
-  <h2>My Browser Tool</h2>
-  <p>Browser tool ready.</p>
+
+<h2>My Browser Tool</h2>
+
+<input id="url" placeholder="Website URL डालो">
+
+<button onclick="openSite()">Open Website</button>
+
+<div id="timer">30</div>
+
+<button onclick="changeTime(-15)">−15 सेकंड</button>
+<button onclick="changeTime(15)">+15 सेकंड</button>
+
+<script>
+let time = 30;
+
+function openSite() {
+  let url = document.getElementById("url").value;
+
+  if (!url) {
+    alert("पहले URL डालो");
+    return;
+  }
+
+  if (!url.startsWith("http")) {
+    url = "https://" + url;
+  }
+
+  window.open(url, "_blank");
+}
+
+function changeTime(value) {
+  time += value;
+
+  if (time < 0) {
+    time = 0;
+  }
+
+  document.getElementById("timer").innerText = time;
+}
+</script>
+
 </body>
 </html>
